@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+    <type-extension type-id="SitePreferences">
+	<custom-attribute-definitions>
+        <attribute-definition attribute-id="pwa_kit_redirect_home">
+            <display-name xml:lang="x-default">Toggle Home Redirect</display-name>
+            <description xml:lang="x-default">Enables redirecting of the home page to PWA Kit</description>
+            <type>boolean</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>false</default-value>
+        </attribute-definition>
+        <attribute-definition attribute-id="pwa_kit_redirect_product">
+            <display-name xml:lang="x-default">Toggle Product Redirect</display-name>
+            <description xml:lang="x-default">Enables redirecting of product pages to PWA Kit</description>
+            <type>boolean</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>false</default-value>
+        </attribute-definition>
+        <attribute-definition attribute-id="pwa_kit_redirect_category">
+            <display-name xml:lang="x-default">Toggle Category Redirect</display-name>
+            <description xml:lang="x-default">Enables redirecting of category pages to PWA Kit</description>
+            <type>boolean</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>false</default-value>
+        </attribute-definition>
+        <attribute-definition attribute-id="pwa_kit_redirect_search">
+            <display-name xml:lang="x-default">Toggle Search Redirect</display-name>
+            <description xml:lang="x-default">Enables redirecting of search pages to PWA Kit</description>
+            <type>boolean</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>false</default-value>
+        </attribute-definition>
+        <attribute-definition attribute-id="pwa_kit_redirect_account">
+            <display-name xml:lang="x-default">Toggle Account Redirect</display-name>
+            <description xml:lang="x-default">Enables redirecting of account pages to PWA Kit</description>
+            <type>boolean</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>false</default-value>
+        </attribute-definition>
+        <attribute-definition attribute-id="pwa_kit_redirect_cart">
+            <display-name xml:lang="x-default">Toggle Cart Redirect</display-name>
+            <description xml:lang="x-default">Enables redirecting of cart pages to PWA Kit</description>
+            <type>boolean</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>false</default-value>
+        </attribute-definition>
+        <attribute-definition attribute-id="pwa_kit_redirect_login">
+            <display-name xml:lang="x-default">Toggle Login Redirect</display-name>
+            <description xml:lang="x-default">Enables redirecting of login pages to PWA Kit</description>
+            <type>boolean</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>false</default-value>
+        </attribute-definition>
+        <attribute-definition attribute-id="pwa_kit_redirect_checkout">
+            <display-name xml:lang="x-default">Toggle Checkout Redirect</display-name>
+            <description xml:lang="x-default">Enables redirecting of checkout pages to PWA Kit</description>
+            <type>boolean</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>false</default-value>
+        </attribute-definition>
+        <attribute-definition attribute-id="pwa_kit_routes">
+            <display-name xml:lang="x-default">Routes</display-name>
+            <description xml:lang="x-default">Routes used by PWA Kit (in JSON)</description>
+            <type>text</type>
+            <mandatory-flag>false</mandatory-flag>
+            <externally-managed-flag>false</externally-managed-flag>
+            <default-value>
+{
+    "Home": "/",
+    "Product": "/[locale]/product/[productid]",
+    "Category": "/[locale]/category/[categoryid]",
+    "Search": "/[locale]/search?q=[searchterms]",
+    "Account": "/[locale]/account",
+    "Cart": "/[locale]/cart",
+    "Login": "/[locale]/login",
+    "Checkout": "/[locale]/checkout"
+}
+            </default-value>
+        </attribute-definition>
+    </custom-attribute-definitions>
+    <group-definitions>
+        <attribute-group group-id="PWA Kit Hybrid Plugin">
+            <display-name xml:lang="x-default">PWA Kit Hybrid Plugin Configurations</display-name>
+            <attribute attribute-id="pwa_kit_redirect_home"/>
+            <attribute attribute-id="pwa_kit_redirect_product"/>
+            <attribute attribute-id="pwa_kit_redirect_category"/>
+            <attribute attribute-id="pwa_kit_redirect_search"/>
+            <attribute attribute-id="pwa_kit_redirect_account"/>
+            <attribute attribute-id="pwa_kit_redirect_cart"/>
+            <attribute attribute-id="pwa_kit_redirect_login"/>
+            <attribute attribute-id="pwa_kit_redirect_checkout"/>
+            <attribute attribute-id="pwa_kit_routes"/>
+        </attribute-group>
+    </group-definitions>
+    </type-extension>
+</metadata>

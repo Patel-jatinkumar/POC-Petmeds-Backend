@@ -1,0 +1,42 @@
+name: deploy_cartridges
+inputs:
+    BM_HOSTNAME:
+        description: Business Manager Hostname
+        required: true
+    SFCC_API_KEY:
+        description: SFCC CI API Key
+        required: true
+    SFCC_API_SECRET:
+        description: SFCC CI API Secret
+        required: true
+    CWD:
+        description: Project directory
+        required: false
+        default: ${{ github.workspace }}
+
+runs:
+    using: composite
+    steps:
+        - name: Log Deployment
+          working-directory: ${{ inputs.cwd }}
+          run: echo Deploying plugin_SLAS to ${{ inputs.BM_HOSTNAME }}
+          shell: bash
+
+        - name: Generate plugin_slas.zip
+          working-directory: ${{ inputs.cwd }}
+          run: npm run zip:plugin
+          shell: bash
+
+        - name: Generate plugin_slas_test.zip
+          working-directory: ${{ inputs.cwd }}
+          run: npm run zip:testPlugin
+          shell: bash
+
+        - name: Deploy cartridges with SFCC-CI
+          working-directory: ${{ inputs.cwd }}
+          run: |-
+              npm install -g sfcc-ci
+              sfcc-ci client:auth ${{inputs.SFCC_API_KEY}} ${{inputs.SFCC_API_SECRET}}
+              sfcc-ci code:deploy ./plugin_slas.zip -i ${{inputs.BM_HOSTNAME}}
+              sfcc-ci code:deploy ./plugin_slas_test.zip -i ${{inputs.BM_HOSTNAME}}
+          shell: bash

@@ -1,0 +1,69 @@
+name: SalesforceCommerceCloud/plugin_slas/test
+
+on:
+    workflow_call:
+        inputs:
+            NODE_VERSION:
+                required: true
+                type: string
+            IS_PRIVATE_CLIENT:
+                required: true
+                type: boolean
+            BM_HOSTNAME:
+                required: true
+                type: string
+        secrets:
+            SFCC_API_KEY:
+                required: true
+            SFCC_API_SECRET:
+                required: true
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        env:
+            SFCC_BASE_URL: https://${{ inputs.BM_HOSTNAME }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ inputs.NODE_VERSION }}
+
+            - name: Install Dependencies
+              run: npm ci
+
+            - name: Deploy Latest Cartrige Code to BM
+              uses: './.github/actions/deploy_cartridges'
+              with:
+                  BM_HOSTNAME: ${{ inputs.BM_HOSTNAME }}
+                  SFCC_API_KEY: ${{ secrets.SFCC_API_KEY }}
+                  SFCC_API_SECRET: ${{ secrets.SFCC_API_SECRET }}
+
+            - name: Run Linter
+              run: npm run lint
+
+            - name: Set Environment Variables
+              run: echo "IS_PRIVATE_CLIENT=${{ inputs.IS_PRIVATE_CLIENT }}" >> $GITHUB_ENV
+
+            - name: Run Unit Tests
+              run: npm run test
+
+            - name: Run E2E Tests
+              run: |-
+                  # Retry 3 times before the step actually fails
+                  # Strange way to implement retries because Github Actions does NOT offer retries OOTB
+                  (echo "===== Run E2E Tests Attempt: 1 ====" && npm run test:e2e) || \
+                  (echo "===== Run E2E Tests Attempt: 2 ====" && npm run test:e2e) || \
+                  (echo "===== Run E2E Tests Attempt: 3 ====" && npm run test:e2e) || \
+                  (echo "==== Run E2E Tests Step Failed ====" && exit 1)
+
+            - name: Run Nightly Tests
+              run: |-
+                  # Retry 2 times before the step actually fails since the internal circuit breaker monitors a bigger load of failed requests before breaking.
+                  # Also, since we intentionally try to call an unreachable endpoint, response times vary between 2-5s resulting in tests timing out.
+                  # Strange way to implement retries because Github Actions does NOT offer retries OOTB
+                  (echo "===== Run Nightly Tests Attempt: 1 ====" && npm run test:nightly) || \
+                  (echo "===== Run Nightly Tests Attempt: 2 ====" && npm run test:nightly) || \
+                  (echo "==== Run Nightly Tests Step Failed ====" && exit 1)

@@ -1,0 +1,43 @@
+{
+    "name": "plugin_slas",
+    "version": "7.3.0",
+    "description": "Plugin to extend authentication for guest users and registered shoppers using SLAS for SFRA",
+    "scripts": {
+        "cover": "sgmf-scripts --cover 'test/unit'",
+        "test": "sgmf-scripts --test 'test/unit/**/*.js'",
+        "test:e2e": "sgmf-scripts --test 'test/e2e/**/*.js'",
+        "test:nightly": "sgmf-scripts --test 'test/nightly/**/*.js'",
+        "lint": "sgmf-scripts --lint js && prettier --check .",
+        "format": "prettier --write '.'",
+        "upload": "sgmf-scripts --upload",
+        "uploadCartridge": "sgmf-scripts --uploadCartridge plugin_slas",
+        "uploadTestCartridge": "sgmf-scripts --uploadCartridge plugin_slas && sgmf-scripts --uploadCartridge plugin_slas_test",
+        "zip:plugin": "zip -FSr plugin_slas.zip cartridges/plugin_slas",
+        "zip:testPlugin": "zip -FSr plugin_slas_test.zip cartridges/plugin_slas_test"
+    },
+    "devDependencies": {
+        "chai": "^4.3.6",
+        "chai-subset": "^1.6.0",
+        "eslint": "^8.56.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-es5": "^1.5.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-import": "^2.29.0",
+        "eslint-plugin-sitegenesis": "~1.0.0",
+        "jsdom": "^19.0.0",
+        "node-fetch": "^2.6.7",
+        "prettier": "^3.1.1",
+        "proxyquire": "1.7.4",
+        "sgmf-scripts": "^3.0.0",
+        "sinon": "^17.0.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SalesforceCommerceCloud/plugin_slas.git"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "singleQuote": true,
+        "trailingComma": "none"
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "clients": [
+        {
+            "client_id": "1672455b-a7f4-4311-b662-86563748ccb7",
+            "permissions": [
+                {
+                    "path": "/impex",
+                    "operations": ["read_write"]
+                },
+                {
+                    "path": "/cartridges",
+                    "operations": ["read_write"]
+                },
+                {
+                    "path": "/static",
+                    "operations": ["read_write"]
+                },
+                {
+                    "path": "/catalogs/RefArch",
+                    "operations": ["read_write"]
+                },
+                {
+                    "path": "/libraries/RefArch",
+                    "operations": ["read_write"]
+                },
+                {
+                    "path": "/dynamic/RefArch",
+                    "operations": ["read_write"]
+                }
+            ]
+        }
+    ]
+}
