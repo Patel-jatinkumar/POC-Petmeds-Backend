@@ -20,7 +20,3 @@ test/appium/webdriver/config.json
 test/acceptance/report
 test/integration/config.json
 package-lock.json
-
-
-git config --global user.email patel.jatinkumar@encora.com
-git config --global user.name Jatin Patel
