@@ -17,6 +17,6 @@
         "test": "sgmf-scripts --test test/unit/**/*.js",
         "lint": "sgmf-scripts --lint js",
         "upload": "sgmf-scripts --upload -- ",
-        "uploadCartridge": "sgmf-scripts --uploadCartridge plugin_redirect"
+        "uploadCartridge": "sgmf-scripts --uploadCartridge hybrid_redirect"
     }
 }
