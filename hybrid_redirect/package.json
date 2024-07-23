@@ -1,7 +1,7 @@
 {
-    "name": "plugin_redirect",
+    "name": "hybrid_redirect",
     "version": "0.0.1",
-    "description": "A plugin made for hybrid deployment, it adds page level redirects",
+    "description": "A plugin made for hybrid deployment",
     "devDependencies": {
         "chai": "^3.5.0",
         "chai-subset": "^1.6.0",
@@ -18,9 +18,5 @@
         "lint": "sgmf-scripts --lint js",
         "upload": "sgmf-scripts --upload -- ",
         "uploadCartridge": "sgmf-scripts --uploadCartridge plugin_redirect"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/SalesforceCommerceCloud/plugin_redirect.git"
     }
 }
